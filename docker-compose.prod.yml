@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  web:
+    build: 
+      context: ./MyBank_backend/source
+      dockerfile: Dockerfile.prod
+    restart: unless-stopped
+    command: > 
+        bash -c "gunicorn MyBank.asgi:application -k uvicorn.workers.UvicornWorker"
+    expose:
+      - 8000
+    env_file:
+      - ./MyBank_backend/source/.env.prod
+    extra_hosts:
+      - "database:172.17.0.1"
+
+  nginx:
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
