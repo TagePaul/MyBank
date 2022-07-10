@@ -1,3 +1,4 @@
+from urllib import response
 import uuid
 import random
 from django.contrib.auth import get_user_model
@@ -7,6 +8,7 @@ from django.db import transaction
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
+from rest_framework.permissions import IsAuthenticated
 
 from .redis import redis_cli
 from .tasks import send_emails
@@ -28,7 +30,20 @@ class UserViewSet(ViewSet):
             email, city, phone_number
     generate_number_account()
         Генерация номера банковского счета
+    me()
+        Проверяет авторизован ли пользователь
+    send_message_for_register_confirm(validated_data)
+        Вспомогательный метод
+        Для генерации токена и отправки письма пользователю с ссылкой 
+        для подтверждения регистрации 
+    confirm_register
+        Метод подтверждения регистрации через ссылку
     """
+
+    @action(methods=['get'], detail=False,
+        permission_classes=[IsAuthenticated])
+    def me(self, request):
+        return Response({'status': 'ok'})
     
     @action(methods=['post'], detail=False)
     @transaction.atomic

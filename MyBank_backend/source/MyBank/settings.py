@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-i9rso#_jl5#%n^pq_qj#+l)rauc!6dos^mk3_=m!ez$w-+67*t'
 
-DEBUG = True
+DEBUG = False
 
 # Настройка разрешения по заголовку Origin (домен)
 # В Ответе должен быть заголвоок Access-Control-Allow-Origin: https://mysite.com
@@ -103,14 +103,14 @@ SIMPLE_JWT = {
      'JTI_CLAIM': 'jti',
 
      'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=60),
-     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=2),
+     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=7),
    }
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'tagepaul1416@gmail.com'
-EMAIL_HOST_PASSWORD = 'bnrtjoreezuvthib'
+EMAIL_HOST_PASSWORD = 'cxfusyhrmgwalgjc'
 EMAIL_PORT = 587
 
 
@@ -155,7 +155,7 @@ REDIS_SETTINGS = {
     'db': os.environ.get('REDIS_DB', 0)
 }
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 # CELERY_ACCEPT_CONTENT = 'application/json'

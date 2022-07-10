@@ -1,0 +1,292 @@
+*{
+  padding: 0;
+  margin: 0;
+  border: 0
+  }
+
+*,*:before,*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  }
+
+:focus,:active{outline: none;}
+a:focus,a:active{outline: mone;}
+
+nav,footer,header,aside{display: block;}
+
+html,body{
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  }
+
+input,button,textarea{font-family: inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner{padding:0; border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size: inherit; font-weight: 400;}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.AllDocumentBox {
+  min-height: 100%;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AllHeaderBox {
+  min-height: 50px;
+  max-height: 50px;
+  max-width: 90%;
+  min-width: 800px;
+  border: 2px solid blueviolet;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.HeaderWorkArea.AllHeaderBox__HeaderWorkArea {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+.HeaderWorkArea__Button {
+  border: 3px solid teal;
+  min-width: 120px;
+  min-height: 40px;
+  text-align: center;
+  padding: 10px;
+  margin-right: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.HeaderWorkArea__Button:active {
+  background-color: teal;
+}
+
+.AllContentBox {
+  min-width: 800px;
+  max-width: 800px;
+  border: 2px solid red;
+  flex-grow: 1;
+}
+
+.AllContentBox__ContentWorkArea.ContentWorkArea{
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.ContentWorkArea__RegisterBox.RegisterBox{
+  min-width: 60%;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid teal;
+  position: relative;
+}
+
+.RegisterBox__title{
+  margin-top: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.RegisterBox__alert {
+  margin-top: 10px;
+  min-width: 100%;
+  max-width: 100%;
+  text-align: center;
+  /* visibility: hidden; */
+}
+
+.RegisterBox__form form{
+  margin-top: 20px;
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.AllFooterBox {
+  min-height: 40px;
+  min-width: 100%;
+  border: 2px solid blueviolet;
+}
+
+.ContentWorkArea__LoginBox.LoginBox {
+  min-width: 60%;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid teal;
+  position: relative;
+}
+.LoginBox__title {
+  margin-top: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.LoginBox__Alert {
+  margin-top: 10px;
+  min-width: 100%;
+  max-width: 100%;
+  text-align: center;
+  /* visibility: hidden; */
+}
+.LoginBox__form form{
+  margin-top: 20px;
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ContentWorkArea__AboutBox.AboutBox {
+  min-width: 800px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.AboutBox__text {
+  font-size: 19px;
+  font-weight: bold;
+  padding: 5px;
+}
+.AboutBox__delimiter {
+  width: 800px;
+  border: 2px solid teal;
+  background-color: teal;
+  margin-bottom: 20px;
+}
+
+.ContentWorkArea__ActionsBox.ActionBox {
+  min-width: 800px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1.ActionBox__title{
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.ActionBox__ActionButton {
+  min-width: 400px;
+  border: 3px solid teal;
+  padding: 15px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+.ActionBox__ActionButton:active {
+  background-color: teal;
+}
+
+.ContentWorkArea__MyInfoBox.MyInfoBox{
+  min-width: 500px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+.MyInfoBox__MyBalance {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ContentWorkArea__TransactBox.TransactBox {
+  min-width: 450px;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid teal;
+  position: relative;
+}
+
+.TransactBox__title {
+  margin-top: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.TransactBox__Alert {
+  margin-top: 10px;
+  min-width: 120px;
+  max-width: 100%;
+  text-align: center;
+}
+.TransactBox__form form {
+  margin-top: 20px;
+  min-width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ContentWorkArea__MyTransactions.MyTransactions {
+  min-width: 450px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px solid teal;
+  position: relative;
+}
+.MyTransactions__title {
+  margin-top: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.MyTransactions__table {
+  min-width: 90%;
+  text-align: center;
+  border: 2px solid black;
+  padding: 5px;
+}
+.MyTransactions__table td {
+  padding: 3px;
+}
+.MyTransactions__table:last-child {
+  margin-bottom: 20px;
+}
