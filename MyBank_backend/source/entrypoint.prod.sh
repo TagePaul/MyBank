@@ -15,10 +15,11 @@ fi
 python3 manage.py makemigrations
 python3 manage.py migrate
 
+python3 manage.py collectstatic --noinput
 # Копирвоание статики в docker-compose volumes
-# cp -R /usr/src/my_bank/api_static/ /usr/src/my_banc/static_data
+cp -R /usr/src/my_bank/api_static/ /usr/src/my_bank/static_data
 # Копирвоание медиа в docker-compose volumes
-# cp -R /usr/src/my_bank/api_media/ /usr/src/my_banc/media_data
+cp -R /usr/src/my_bank/api_media/ /usr/src/my_bank/media_data
 
 # Запуск celery воркера
 celery -A MyBank worker -l INFO &

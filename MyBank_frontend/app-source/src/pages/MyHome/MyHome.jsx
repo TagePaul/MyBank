@@ -1,10 +1,18 @@
-import React from "react";
-import HeaderButton_v1  from '../../components/UI/Button/HeaderButton/HeaderButton_v1'
+import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context";
+
+import HeaderButton_v1  from '../../components/UI/Button/HeaderButton/HeaderButton_v1'
 import { addMoney } from "../../utils/HomeActionTool/HomeActionTool";
 
 const MyHome = () => {
     const redirect = useNavigate()
+    let {isAuth, setIsAuth} = useContext(AuthContext)
+    useEffect(() => {
+        if (isAuth == false) {
+            redirect('/login')
+        }
+    })
 
     let getBalanceEvent = (event) => {
         redirect('/my_balance')
@@ -23,14 +31,22 @@ const MyHome = () => {
     }
 
     const actionButtons_context = [
-        {className: 'ActionBox__ActionButton', name: 'Узнать сой баланс', eventHandler: getBalanceEvent},
-        {className: 'ActionBox__ActionButton', name: 'Совершить перевод по номеру телефона', eventHandler: getTransactEvent},
-        {className: 'ActionBox__ActionButton', name: 'Просмотреть истроию своих переводов', eventHandler: getMyTransactionsList},
-        {className: 'ActionBox__ActionButton', name: 'Добавить 5000р', eventHandler: addMoneyEvent}
+        {className: 'ActionBox__ActionButton', 
+         name: 'Узнать сой баланс', 
+         eventHandler: getBalanceEvent},
+        {className: 'ActionBox__ActionButton', 
+         name: 'Совершить перевод по номеру телефона', 
+         eventHandler: getTransactEvent},
+        {className: 'ActionBox__ActionButton', 
+         name: 'Просмотреть истроию своих переводов', 
+         eventHandler: getMyTransactionsList},
+        {className: 'ActionBox__ActionButton', 
+         name: 'Добавить 5000р', 
+         eventHandler: addMoneyEvent}
     ]
+    
     let actionButtons = actionButtons_context.map((item, index) => 
         <HeaderButton_v1 key={index} context={item}/>)
-    console.log(actionButtons)
 
     return (
         <div className="AllContentBox__ContentWorkArea ContentWorkArea">

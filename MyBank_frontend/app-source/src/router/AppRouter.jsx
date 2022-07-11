@@ -5,7 +5,7 @@ import Register from "../pages/Register/Register";
 import Login from '../pages/Login/Login.jsx';
 import MyHome from '../pages/MyHome/MyHome'
 import Transact_v1 from '../pages/HomeAction/Transact/Transact'
-import MyTransactions from '../pages/HomeAction/MyTransactions'
+import MyTransactions from '../pages/HomeAction/MyTransactions/MyTransactions'
 import MyBalance from '../pages/HomeAction/MyBalance';
 
 const AppRouter = () => {

@@ -1,10 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, 
+                useContext, 
+                useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { AuthContext } from "../../../context";
 import Input_v1 from '../../../components/UI/Input/Input_v1'
 import TransactForm from "./components/TransactForm";
 import { transact, confirmTransact } from "../../../utils/HomeActionTool/HomeActionTool";
-
 
 const Transact_v1 = () => {
     const redirect = useNavigate()
@@ -18,6 +20,7 @@ const Transact_v1 = () => {
         redirect('/login')
         }
     })
+
     const transactFormContextForFields = [
         {
             'type': 'text', 'name': 'phone_number', 
@@ -71,8 +74,8 @@ const Transact_v1 = () => {
             }
         })
     }
-    let myForm = null
 
+    let myForm = null
     if (resultSubmitTransactFrom == null || resultSubmitTransactFrom.status == 'error') {
         myForm = <TransactForm resultSubmit={resultSubmitTransactFrom} 
                       field={transactFormFields} 
@@ -88,4 +91,5 @@ const Transact_v1 = () => {
         </div>
     )
 }
+
 export default Transact_v1

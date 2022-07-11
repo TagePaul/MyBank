@@ -1,27 +1,30 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Input_v1 from "../../components/UI/Input/Input_v1";
 import { login } from "../../utils/authTools";
 import { AuthContext } from "../../context";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const {isAuth, setIsAuth} = useContext(AuthContext)
     const [isAlert, setIsAlert] = useState(null)
     const redirect = useNavigate()
-    const inputContext = [
-        {type: 'text', name: 'username', required: true, placeholder: 'Логин'},
-        {type: 'password', name: 'password', required: true, placeholder: 'Пароль'},
-        {type: 'submit'}
-    ]
-    let inputs = inputContext.map((item, index) => 
-        <Input_v1 key={index} {...item}/>
-        )
-
     useEffect(() => {
         if (isAuth) {
             redirect('/lk')
         }
     })
+
+    const inputContext = [
+        {type: 'text', name: 'username', 
+         required: true, placeholder: 'Логин'},
+        {type: 'password', name: 'password', 
+         required: true, placeholder: 'Пароль'},
+        {type: 'submit'}
+    ]
+    let inputs = inputContext.map((item, index) => 
+        <Input_v1 key={index} {...item}/>
+        )
 
     async function submitEvent(event) {
         event.preventDefault()
@@ -35,8 +38,6 @@ const Login = () => {
             }
         })
     }
-    console.log('ren')
-
     return (
         <div className="AllContentBox__ContentWorkArea ContentWorkArea">
             <div className="ContentWorkArea__LoginBox LoginBox">

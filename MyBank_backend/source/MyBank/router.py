@@ -1,4 +1,3 @@
-from email.mime import base
 from rest_framework.routers import DefaultRouter
 from user.views import UserViewSet
 from transaction.views import BalanceViewSet, TransactionViewSet

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderButton_v1 from "../UI/Button/HeaderButton/HeaderButton_v1";
+
 import { AuthContext } from "../../context";
+import HeaderButton_v1 from "../UI/Button/HeaderButton/HeaderButton_v1";
 
 const AppHeader = () => {
     const {isAuth, setIsAuth} = useContext(AuthContext)
@@ -25,14 +26,24 @@ const AppHeader = () => {
 
     if (isAuth == false) {
         buttons_context = [
-            {className: 'HeaderWorkArea__Button', 'name': 'Регистрация', 'link': false, 'eventHandler': RegisterEvent},
-            {className: 'HeaderWorkArea__Button','name': 'Авторизация', 'link': false, 'eventHandler': LoginEvent},
-            {className: 'HeaderWorkArea__Button','name': 'Домой', 'link': false, 'eventHandler': HomeEvent}
+            {className: 'HeaderWorkArea__Button', 
+             'name': 'Регистрация', 'link': false, 
+             'eventHandler': RegisterEvent},
+            {className: 'HeaderWorkArea__Button',
+             'name': 'Авторизация', 'link': false, 
+             'eventHandler': LoginEvent},
+            {className: 'HeaderWorkArea__Button',
+             'name': 'Домой', 'link': false, 
+             'eventHandler': HomeEvent}
         ]
     } else if (isAuth == true) {
         buttons_context = [
-            {className: 'HeaderWorkArea__Button', 'name': 'Домой', 'link': false, 'eventHandler': HomeEvent},
-            {className: 'HeaderWorkArea__Button', 'name': 'Выход', 'linl': false, 'eventHandler': ExitEvent}
+            {className: 'HeaderWorkArea__Button', 
+             'name': 'Домой', 'link': false, 
+             'eventHandler': HomeEvent},
+            {className: 'HeaderWorkArea__Button', 
+             'name': 'Выход', 'linl': false, 
+             'eventHandler': ExitEvent}
         ]   
     }
     

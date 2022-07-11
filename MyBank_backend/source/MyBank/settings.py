@@ -3,46 +3,23 @@ import redis
 from datetime import timedelta
 from pathlib import Path
 
+from .prod_settings import * 
+# from local_settings import *
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-i9rso#_jl5#%n^pq_qj#+l)rauc!6dos^mk3_=m!ez$w-+67*t'
+DEBUG = os.environ.get('DEBUG', 1)
 
-DEBUG = True
-
-# Настройка разрешения по заголовку Origin (домен)
-# В Ответе должен быть заголвоок Access-Control-Allow-Origin: https://mysite.com
-ALLOWED_HOSTS = ['*'] #####
-
-# [CORS] Расширенная Настройка разрешения по заголовку Origin (домен/протокол/порт)
-# установка приложения $ pip install django-cors-headers
-# https://pypi.org/project/django-cors-headers/
-# Принцип работы CORS:
-    # Браузер отправляет запрос на сервер с заголовков Origin: (домен/протокол/порт)
-    # В разрешающем ответе должен быть заголвоок Access-Control-Allow-Origin: https://mysite.com
-    # Так-же подедерживаются непростые методы и заголовки запроса.
-    # Браузер отправляет предзапрос с заголовками Origin:
-    #                                             Access-Control-Request-Method: [Методы]
-    #                                             Access-Control-Request-Headers [Заголовки]
-    # Сервер отвечает с заголовком Access-Control-Allow-Methods: [разрешенные методы]
-    #                              Access-Control-Allow-Headers: [Разрешенные заголовки]
-    #                              Access-Control-Max-Age: [время кеширования]
-    # Если все хорошо, браузер отправляет основной запрос с заголовков Origin: (домен/протокол/порт)
-    # Если работа с таким доменом/протоколом/методом/заголовками разрешена
-    # Сервер выдает полный ответ с заголовком Access-Control-Allow-Origin https://mysite.com
-CORS_ALLOW_ALL_ORIGINS = True # Можно все
-# CORS_ALLOWED_ORIGINS = []
-# CORS_ALLOW_METHODS = [
-#     "DELETE",
-#     "GET",
-#     "OPTIONS",
-#     "PATCH",
-#     "POST",
-#     "PUT",
-# ]
-# CORS_ALLOW_HEADERS = []
-CSRF_TRUSTED_ORIGINS = []
+HOST_NAME = os.environ.get('HOST_NAME', 
+    'http://127.0.0.1/:8000')
 
 HOST_NAME = os.environ.get('HOST_NAME','http://localhost:8000')
+
+MEDIA_URL = '/api_media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'api_media')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'api_static')
+STATIC_URL = '/api_static/'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -69,11 +46,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
        ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer',
+    )
     }
 
 SIMPLE_JWT = {
@@ -154,10 +134,9 @@ REDIS_SETTINGS = {
     'port': os.environ.get('REDIS_PORT', 6379),
     'db': os.environ.get('REDIS_DB', 0)
 }
-
-CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'redis://localhost:6379')
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', 'redis://localhost:6379')
 # CELERY_ACCEPT_CONTENT = 'application/json'
 # CELERY_TASK_SERIALIZER = 'json'
 # CELERY_RESULT_SERIALIZER = 'json'
@@ -187,7 +166,5 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -7,21 +7,18 @@ const MyBalance = () => {
     let redirect = useNavigate()
     let {isAuth, setIsAuth} = useContext(AuthContext)
     let [balance, setBalance] = useState(null)
-
     useEffect(() => {
         if (isAuth == false) {
             redirect('/login')
         }
     })
+
     if (isAuth == true && balance == null) {
-        console.log(isAuth)
-        console.log(balance)
         let access_token = localStorage.getItem('access')
         myBalance(access_token).then(balance => {
             setBalance(balance) // 100 | false
         })
     }
-    console.log('pererender')
     return (
         <div className="AllContentBox__ContentWorkArea ContentWorkArea">
             <div className="ContentWorkArea__MyInfoBox MyInfoBox">

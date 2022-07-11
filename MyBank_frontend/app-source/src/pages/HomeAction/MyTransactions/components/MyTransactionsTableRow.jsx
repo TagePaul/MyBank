@@ -10,7 +10,6 @@ const MyTransactionsTableRow = (props) => {
             <td>{props.transfer_amount}</td>
         </tr>
     )
-
 }
 
 export default MyTransactionsTableRow;

@@ -1,9 +1,11 @@
+import re
 from urllib import response
 import uuid
 import random
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db import transaction
+from django.http import HttpResponseRedirect, Http404
 
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -109,7 +111,6 @@ class UserViewSet(ViewSet):
         username = validated_data['username']
         confirm_token = str(uuid.uuid4())
         confirm_url = f'{settings.HOST_NAME}/api/users/confirm_register/?confirm_token={confirm_token}'
-
         redis_cli.set(name=confirm_token, 
                      value=username)
         redis_cli.expire(name=confirm_token, 
@@ -137,9 +138,5 @@ class UserViewSet(ViewSet):
             user = User.objects.only('is_active').get(username=username)
             user.is_active = True
             user.save()
-            return Response({'status': 'ok', 
-                         'description': 'Успешная регистарция', 
-                         'data': None})
-        return Response({'status': 'error', 
-                         'description': 'Ошибка регистрации', 
-                         'data': None})
+            return HttpResponseRedirect(redirect_to=settings.HOST_NAME)
+        return Http404()
