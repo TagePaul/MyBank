@@ -87,13 +87,6 @@ SIMPLE_JWT = {
      'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=7),
    }
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'tagepaul1416@gmail.com'
-EMAIL_HOST_PASSWORD = 'cxfusyhrmgwalgjc'
-EMAIL_PORT = 587
-
-
 ROOT_URLCONF = 'MyBank.urls'
 
 TEMPLATES = [

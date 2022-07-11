@@ -4,7 +4,6 @@ import { APIGetBalance,
          APIMyTransactions,
          APIAddMoney } from '../../API/API'
 
-
 export async function myBalance(access_token) {
     try {
         let response = await fetch(APIGetBalance, {
@@ -36,7 +35,6 @@ export async function transact(data) {
         });
         if (response.status == 200) {
             let result = await response.json()
-            console.log(result)
             return result
         } else {
             return {'status': 'error', description: 'Ошибка'}
