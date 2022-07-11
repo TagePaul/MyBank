@@ -11,10 +11,12 @@ then
     echo "PostgreSQL started"
 fi
 
-python3 manage.py makemigrations
+python3 manage.py flush --no-input
 python3 manage.py migrate
-celery -A MyBank worker -l INFO &
-# python3 manage.py runserver
+# python3 manage.py makemigrations
+# python3 manage.py migrate
+# celery -A MyBank worker -l INFO &
+python3 manage.py runserver
 #python3 manage.py collectstatic --noinput
 
 #celery -A MyBank worker -l info

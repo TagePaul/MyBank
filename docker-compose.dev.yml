@@ -6,10 +6,10 @@ services:
       context: ./MyBank_backend/source
       dockerfile: Dockerfile.dev
     restart: unless-stopped
-    command: > 
-        bash -c "gunicorn MyBank.asgi:application -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000"
-    expose:
-      - 8000
+    # command: > 
+    #     bash -c "gunicorn MyBank.wsgi:application -c /usr/src/my_bank/config/gunicorn.conf.py"
+    ports:
+      - "8000:8000"
     env_file:
       - ./MyBank_backend/source/.env.dev
     depends_on:
@@ -34,11 +34,23 @@ services:
       - redis_data:/var/lib/redis
       - redis.conf:/usr/local/etc/redis/refis.conf
 
+  react:
+    build:
+      context: ./MyBank_frontend
+      dockerfile: Dockerfile.dev
+    command: cp -R /usr/src/react/build/ /usr/src/react/data
+    volumes:
+      - react_data:/usr/src/react/data
+    depends_on:
+      - web
+
   nginx:
       build: ./nginx
       restart: unless-stopped
       ports:
         - "80:80"
+      volumes:
+        - react_data:/usr/src/nginx/react
       depends_on:
         - web
 
@@ -46,3 +58,4 @@ volumes:
   postgres_data:
   redis_data:
   redis.conf:
+  react_data:

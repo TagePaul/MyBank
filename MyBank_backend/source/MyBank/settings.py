@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-i9rso#_jl5#%n^pq_qj#+l)rauc!6dos^mk3_=m!ez$w-+67*t'
 
-DEBUG = False
+DEBUG = True
 
 # Настройка разрешения по заголовку Origin (домен)
 # В Ответе должен быть заголвоок Access-Control-Allow-Origin: https://mysite.com
